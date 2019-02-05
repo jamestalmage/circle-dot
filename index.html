@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Circle</title>
+
+    <style>
+        .body {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: red;
+            position: absolute;
+            transform: translateY(-50%) translateX(-50%);
+        }
+
+        .path {
+            width: 200px;
+            height: 200px;
+            border: 2px black;
+            border-radius: 100px;
+            left: 50vw;
+            top: 50vh;
+            position: absolute;
+            background-color: rgba(90, 90, 90, 0.5);
+            transform: translateY(-50%) translateX(-50%);
+        }
+
+    </style>
+
+    <script>
+      const now = () => new Date().getTime();
+
+      const start = now();
+
+      const period = 1000;
+
+      const size = 100;
+
+      let div;
+
+      const update = () => {
+      	const elapsed = now() - start;
+      	const horizontal = size * Math.sin(elapsed / period);
+        const vertical = size * Math.cos(elapsed / period);
+        div.style.left = `calc(50vw + ${horizontal}px`;
+        div.style.top = `calc(50vh + ${vertical}px`;
+        requestAnimationFrame(update);
+      };
+
+      window.addEventListener('load', () => {
+      	div = document.getElementById('circle');
+      	requestAnimationFrame(update);
+      });
+    </script>
+
+</head>
+<body>
+
+<div id="circle" class="circle"></div>
+<div class="path"></div>
+
+</body>
+</html>
